@@ -34,7 +34,7 @@ npm run build
 
 ## Project Structure
 
-- `src/popup/` - Extension popup UI
+- `src/sidepanel/` - Extension side panel UI
 - `src/content/` - Content scripts
 - `manifest.config.ts` - Chrome extension manifest configuration
 
@@ -49,4 +49,5 @@ npm run build
 - Use `manifest.config.ts` to configure your extension
 - The CRXJS plugin automatically handles manifest generation
 - Content scripts should be placed in `src/content/`
-- Popup UI should be placed in `src/popup/`
+- Side panel UI should be placed in `src/sidepanel/`
+- `side_panel.default_path` defines the default side panel page
