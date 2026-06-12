@@ -16,8 +16,15 @@ export default defineManifest({
   background: {
     service_worker: "src/background.ts",
   },
-  permissions: ["sidePanel", "tabs"],
-  host_permissions: ["https://sipd.kemendagri.go.id/*"],
+  permissions: ["sidePanel", "tabs", "storage"],
+  host_permissions: ["https://sipd-ri.kemendagri.go.id/*"],
+  content_scripts: [
+    {
+      matches: ["https://sipd-ri.kemendagri.go.id/*"],
+      js: ["src/content/main.tsx"],
+      // run_at: "document_idle",
+    },
+  ],
   side_panel: {
     default_path: "src/sidepanel/index.html",
   },
