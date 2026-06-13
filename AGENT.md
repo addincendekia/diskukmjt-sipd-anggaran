@@ -32,8 +32,9 @@ src/
 │ ├── index.html
 │ └── main.tsx
 ├── content/
+│ ├── components
 │ ├── App.tsx
-│ └── main.tsx
+│ └── main.tsx #this where content-script belongs
 ├── styles/
 │ └── tailwindcss.css
 ├── background.ts
@@ -55,3 +56,14 @@ Convert HTML tables into structured JSON
 Allow user to add tags/metadata
 Save the data into a database service
 Display stored data grouped and filtered by tags
+
+Coding conventions
+
+- Component filenames should use a capitalized base name and dot-suffix convention, for example:
+  - `App.tsx` for the component
+  - `App.skeleton.tsx` for the skeleton UI
+  - `App.hook.tsx` for the custom hook
+  - `App.styles.css` for the component-specific styles
+- Custom React hooks should be named with `use*` and reflect the owner, for example `useApp` for an App-specific hook.
+- Boolean attributes and props should use clear prefixes like `is`, `has`, or `can`, for example `isLoading`, `isCollapsed`, `isError`, `hasValue`.
+- Avoid nested conditional expressions in JSX; extract the logic into a helper function.
