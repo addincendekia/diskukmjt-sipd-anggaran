@@ -28,6 +28,8 @@ src/
 ├── assets/
 ├── components/
 ├── sidepanel/
+│ ├── components
+│ ├── pages
 │ ├── App.tsx
 │ ├── index.html
 │ └── main.tsx
