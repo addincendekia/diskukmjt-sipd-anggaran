@@ -39,7 +39,7 @@ export default function PagePaguAnggaran() {
     >,
   ) => {
     if (isEditModalOpen && selectedData) {
-      updateData(selectedData.id, formData);
+      // updateData(selectedData.id, formData);
     } else {
       addData(formData);
     }
@@ -99,7 +99,7 @@ export default function PagePaguAnggaran() {
         isOpen={isDeleteConfirmOpen}
         title="Delete Pagu Anggaran"
         message={`Are you sure you want to delete "${selectedData?.tag}"? This action cannot be undone.`}
-        onConfirm={() => selectedData && deleteData(selectedData.id)}
+        // onConfirm={() => selectedData && deleteData(selectedData.id)}
         onCancel={closeDeleteConfirm}
       />
     </div>

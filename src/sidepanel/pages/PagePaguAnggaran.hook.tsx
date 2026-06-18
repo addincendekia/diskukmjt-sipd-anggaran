@@ -1,12 +1,5 @@
+import { PaguAnggaranData } from "@/data";
 import { useState } from "react";
-
-export interface PaguAnggaranData {
-  id: string;
-  jenisApbd: string;
-  tag: string;
-  tim: string;
-  budget: number;
-}
 
 interface UsePagePaguAnggaranReturn {
   data: PaguAnggaranData[];
@@ -34,14 +27,12 @@ interface UsePagePaguAnggaranReturn {
 export function usePagePaguAnggaran(): UsePagePaguAnggaranReturn {
   const [data, setData] = useState<PaguAnggaranData[]>([
     {
-      id: "1",
       jenisApbd: "Murni",
       tag: "Transportasi",
       tim: "Tim A",
       budget: 425000000,
     },
     {
-      id: "2",
       jenisApbd: "Perubahan",
       tag: "Pendidikan",
       tim: "Tim B",
@@ -93,21 +84,20 @@ export function usePagePaguAnggaran(): UsePagePaguAnggaranReturn {
   const addData = (formData: Omit<PaguAnggaranData, "id">) => {
     const newData: PaguAnggaranData = {
       ...formData,
-      id: Date.now().toString(),
     };
     setData((prev) => [...prev, newData]);
     closeAddModal();
   };
 
   const updateData = (id: string, formData: Omit<PaguAnggaranData, "id">) => {
-    setData((prev) =>
-      prev.map((item) => (item.id === id ? { ...formData, id } : item)),
-    );
+    // setData((prev) =>
+    //   prev.map((item) => (item.id === id ? { ...formData, id } : item)),
+    // );
     closeEditModal();
   };
 
   const deleteData = (id: string) => {
-    setData((prev) => prev.filter((item) => item.id !== id));
+    // setData((prev) => prev.filter((item) => item.id !== id));
     closeDeleteConfirm();
   };
 

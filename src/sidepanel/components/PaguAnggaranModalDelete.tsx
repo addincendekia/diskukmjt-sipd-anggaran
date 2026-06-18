@@ -2,7 +2,7 @@ interface PaguAnggaranModalDeleteProps {
   isOpen: boolean;
   title: string;
   message: string;
-  onConfirm: () => void;
+  // onConfirm: () => void;
   onCancel: () => void;
   isLoading?: boolean;
 }
@@ -11,7 +11,7 @@ export default function PaguAnggaranModalDelete({
   isOpen,
   title,
   message,
-  onConfirm,
+  // onConfirm,
   onCancel,
   isLoading = false,
 }: PaguAnggaranModalDeleteProps) {
@@ -25,7 +25,7 @@ export default function PaguAnggaranModalDelete({
 
         <div className="flex gap-2">
           <button
-            onClick={onConfirm}
+            // onClick={onConfirm}
             disabled={isLoading}
             className="flex-1 px-4 py-2 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
