@@ -1,4 +1,4 @@
-export type FilterType = "tag" | "group" | "description";
+export type FilterType = "tag" | "tim" | "description";
 
 export type ActiveFilter = {
   type: FilterType;

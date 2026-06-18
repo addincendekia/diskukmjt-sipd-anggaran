@@ -2,18 +2,16 @@ import { useState } from "react";
 import { FilterType, ActiveFilter } from "../types";
 import FilterBarForm from "./FilterBarForm";
 
-type FilterBarProps = {
-  activeItems: ActiveFilter[];
-  onAddItem: (type: FilterType, value: string) => void;
-  onRemoveItem: (index: number) => void;
-};
+// type FilterBarProps = {
+//   activeItems: ActiveFilter[];
+//   onAddItem: (type: FilterType, value: string) => void;
+//   onRemoveItem: (index: number) => void;
+// };
 
-export default function FilterBar({
-  activeItems,
-  onAddItem,
-  onRemoveItem,
-}: FilterBarProps) {
+export default function FilterBar() {
   const [filterOpen, setFilterOpen] = useState(false);
+
+  const [activeItems, setActiveItems] = useState<ActiveFilter[]>([]);
 
   const filterBadgeStyle = (type: FilterType) =>
     type === "tag"
@@ -22,12 +20,19 @@ export default function FilterBar({
 
   const filterBadgeIcon = (type: FilterType) => {
     if (type === "tag") return "🎯";
-    return type === "group" ? "📌" : "🔍";
+    return type === "tim" ? "📌" : "🔍";
+  };
+
+  const handleAddItem = (type: FilterType, value: string) => {
+    setActiveItems((prev) => [...prev, { type, value }]);
+  };
+
+  const handleRemoveItem = (index: number) => {
+    setActiveItems((prev) => prev.filter((_, idx) => idx !== index));
   };
 
   return (
-    <div className="py-4">
-      <h2 className="text-lg font-semibold text-white mb-2">Filters</h2>
+    <>
       <div className="relative">
         <div className="min-w-0 flex-1 overflow-x-auto custom-scrollbar">
           <div className="flex min-w-0 gap-2 whitespace-nowrap pb-1">
@@ -36,14 +41,14 @@ export default function FilterBar({
                 {activeItems.map((filter, index) => (
                   <span
                     key={`${filter.type}-${filter.value}-${index}`}
-                    className={`${filterBadgeStyle(filter.type)} inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium`}
+                    className={`${filterBadgeStyle(filter.type)} inline-flex items-center gap-2 rounded-full px-2 py-0.5 text-xs font-medium`}
                   >
                     <span>{filterBadgeIcon(filter.type)}</span>
                     {filter.value}
                     <button
                       type="button"
-                      onClick={() => onRemoveItem(index)}
-                      className="p-1 text-slate-200 transition hover:text-white/20"
+                      onClick={() => handleRemoveItem(index)}
+                      className="hover:cursor-pointer p-1 text-slate-200 transition hover:font-semibold hover:text-white"
                     >
                       ×
                     </button>
@@ -52,7 +57,7 @@ export default function FilterBar({
                 <div className="shrink-0 w-8" />
               </>
             ) : (
-              <span className="rounded-full border border-slate-700 bg-slate-800/90 px-3 py-1 text-xs text-slate-300">
+              <span className="pb-1 rounded-full border border-slate-700 bg-slate-800/90 px-2 py-0.5 text-xs font-medium text-slate-300">
                 No active filters
               </span>
             )}
@@ -62,7 +67,7 @@ export default function FilterBar({
         <button
           type="button"
           onClick={() => setFilterOpen((prev) => !prev)}
-          className="absolute right-0 top-0 flex-none inline-flex h-8 items-center justify-center rounded-2xl border border-slate-700 bg-slate-800 px-3 text-sm font-medium text-white transition hover:bg-slate-700"
+          className="hover:cursor-pointer absolute right-0 top-0 flex-none inline-flex h-7 items-center justify-center rounded-2xl border border-slate-700 bg-slate-800 px-2 text-sm font-medium text-white transition hover:bg-slate-700"
         >
           +
         </button>
@@ -70,10 +75,10 @@ export default function FilterBar({
 
       {filterOpen && (
         <FilterBarForm
-          onSubmit={onAddItem}
+          onSubmit={handleAddItem}
           onClose={() => setFilterOpen(false)}
         />
       )}
-    </div>
+    </>
   );
 }
