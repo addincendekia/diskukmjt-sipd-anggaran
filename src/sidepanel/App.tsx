@@ -3,7 +3,7 @@ import { useAppRoute } from "./AppContext";
 import Breadcrumb from "./components/Breadcrumb";
 import PageHome from "./pages/PageHome";
 import PageSubKegiatan from "./pages/PageSubKegiatan";
-import PagePaguAnggaran from "./pages/PagePaguAnggaran";
+import PagePaguAnggaran from "./pages/PagePaguAnggaran/PagePaguAnggaran";
 
 export default function App() {
   const { currentPage } = useAppRoute();

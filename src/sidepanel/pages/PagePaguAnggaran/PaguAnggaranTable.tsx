@@ -1,4 +1,4 @@
-import { PaguAnggaranData } from "../pages/PagePaguAnggaran.hook";
+import { PaguAnggaranData } from "../pages/PagePaguAnggaran/PagePaguAnggaran.hook";
 
 interface PaguAnggaranTableProps {
   data: PaguAnggaranData[];

@@ -1,5 +1,5 @@
+import { PaguAnggaranData } from "@/data";
 import { useState, useEffect } from "react";
-import { PaguAnggaranData } from "../pages/PagePaguAnggaran.hook";
 
 interface PaguAnggaranModalProps {
   isOpen: boolean;

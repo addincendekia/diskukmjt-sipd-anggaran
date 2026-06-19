@@ -28,7 +28,7 @@ src/
 ├── assets/
 ├── components/
 ├── sidepanel/
-│ ├── components
+│ ├── components #reusable component
 │ ├── pages
 │ ├── App.tsx
 │ ├── index.html
@@ -69,3 +69,8 @@ Coding conventions
 - Custom React hooks should be named with `use*` and reflect the owner, for example `useApp` for an App-specific hook.
 - Boolean attributes and props should use clear prefixes like `is`, `has`, or `can`, for example `isLoading`, `isCollapsed`, `isError`, `hasValue`.
 - Avoid nested conditional expressions in JSX; extract the logic into a helper function.
+- Treat `pages/` as a folder of page components. When a page contains multiple related pieces:
+  - Create a page folder for the page component.
+  - Add `index.ts` that exports the main page component, for example `PageComponent.tsx`.
+  - Place any small component used only by that page inside the same page folder.
+  - If a small component may be reused by another page, place it in the shared `components/` folder at the same level as `pages/`.

@@ -1,8 +1,8 @@
 import { usePagePaguAnggaran } from "./PagePaguAnggaran.hook";
-import PaguAnggaranModal from "../components/PaguAnggaranModal";
-import PaguAnggaranModalDelete from "../components/PaguAnggaranModalDelete";
-import PaguAnggaranTable from "../components/PaguAnggaranTable";
-import PaguAnggaranFilter from "../components/PaguAnggaranFilter";
+import PaguAnggaranModal from "../../components/PaguAnggaranModal";
+import PaguAnggaranModalDelete from "../../components/PaguAnggaranModalDelete";
+import PaguAnggaranTable from "../../components/PaguAnggaranTable";
+import PaguAnggaranFilter from "../../components/PaguAnggaranFilter";
 
 export default function PagePaguAnggaran() {
   const {
