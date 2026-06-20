@@ -7,7 +7,13 @@ import useSubKegiatan from "../components/SubKegiatan.hook";
 import BudgetProgress from "../components/BudgetProgress";
 
 export default function PageSubKegiatan() {
-  const { loading, fetchSubKegiatanInfo } = useSubKegiatan();
+  const {
+    loading,
+    subKegiatanInfo,
+    subKegiatanList,
+    fetchSubKegiatanInfo,
+    fetchSubKegiatanList,
+  } = useSubKegiatan();
 
   const [jenisApbd, setJenisApbd] = useState("Murni");
 
@@ -17,10 +23,18 @@ export default function PageSubKegiatan() {
 
       <div className="flex flex-col gap-4">
         {/* Pagu Section */}
-        <div>
+        <div className="relative">
           <h2 className="text-lg font-semibold text-white mb-3">
             Pagu Anggaran
           </h2>
+
+          <button
+            className="absolute right-0 -top-1.25 rounded-lg hover:bg-slate-500/50 hover:cursor-pointer p-1 text-xl"
+            onClick={fetchSubKegiatanInfo}
+            disabled={loading}
+          >
+            🔄️
+          </button>
 
           <div className="flex flex-row justify-between mb-2">
             <div className="w-1/2">
@@ -57,13 +71,11 @@ export default function PageSubKegiatan() {
 
           <p className="text-sm text-slate-400 mb-2">Rincian</p>
           <div className="overflow-x-auto rounded-lg border border-slate-700">
-            <KegiatanTable
-              items={[
-                { tag: "Transportasi", tim: "Tim A", subtotal: 125000000 },
-                { tag: "Transportasi", tim: "Tim B", subtotal: 150000000 },
-                { tag: "Transportasi", tim: "Tim C", subtotal: 175000000 },
-              ]}
-            />
+            {loading ? (
+              <KegiatanTable.Skeleton />
+            ) : (
+              <KegiatanTable items={subKegiatanList} />
+            )}
           </div>
         </div>
       </div>
@@ -71,9 +83,9 @@ export default function PageSubKegiatan() {
       {/* Refresh Button */}
       <div className="sticky bottom-0 left-0 w-full pb-6">
         <button
-          onClick={fetchSubKegiatanInfo}
-          disabled={loading}
-          className="w-full rounded-xl bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-sky-400 disabled:opacity-50 disabled:cursor-not-allowed"
+          onClick={fetchSubKegiatanList}
+          disabled={loading || !subKegiatanInfo?.parseable}
+          className="hover:cursor-pointer w-full rounded-xl bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-sky-400 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? "Refreshing..." : "Refresh Data"}
         </button>

@@ -29,14 +29,24 @@ export default function BudgetProgress({
   // Format the difference display
   const formattedDifference =
     difference >= 0
-      ? `+${(difference / 1000000).toFixed(1)}M`
-      : `${(difference / 1000000).toFixed(1)}M`;
-  const formattedValue = (value / 1000000).toFixed(1);
-  const formattedBudget = (budget / 1000000).toFixed(1);
+      ? `+${formatNumber((difference / 1000000).toFixed(1))}M`
+      : `${formatNumber((difference / 1000000).toFixed(1))}M`;
+
+  const formattedValue = formatNumber((value / 1000000).toFixed(1));
+  const formattedBudget = formatNumber((budget / 1000000).toFixed(1));
 
   // Cap percentage at 100% for display, but allow it to go over 100% for visual representation
   // const displayPercentage = Math.min(percentage, 100);
   const barWidth = Math.min(percentage, 110); // Cap at 110% for visual overflow
+
+  function formatNumber(value: string) {
+    const formatter = new Intl.NumberFormat("id-ID", {
+      style: "decimal",
+      currency: "IDR",
+    });
+
+    return formatter.format(Number(value));
+  }
 
   return (
     <div className="mt-1" style={{ opacity }}>

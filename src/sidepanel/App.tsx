@@ -1,16 +1,26 @@
 import "../styles/tailwind.css";
+import { useEffect } from "react";
 import { useAppRoute } from "./AppContext";
 import Breadcrumb from "./components/Breadcrumb";
 import PageHome from "./pages/PageHome";
 import PageSubKegiatan from "./pages/PageSubKegiatan";
 import PagePaguAnggaran from "./pages/PagePaguAnggaran/PagePaguAnggaran";
+import useSubKegiatan from "./components/SubKegiatan.hook";
 
 export default function App() {
-  const { currentPage } = useAppRoute();
+  const { currentPage, setCurrentPage } = useAppRoute();
+  const { subKegiatanInfo } = useSubKegiatan();
 
   const isPageHome =
     !["sub-kegiatan", "form-pagu-anggaran"].includes(currentPage) ||
     currentPage === "home";
+
+  // TODO: need to handle case when content route changes, sidepanel notified / refetch subKegiatanInfo
+  useEffect(() => {
+    if (subKegiatanInfo) {
+      setCurrentPage("sub-kegiatan");
+    }
+  }, [subKegiatanInfo, setCurrentPage]);
 
   return (
     <div className="min-h-screen min-w-sm bg-slate-950 text-white p-6 pb-0">
